@@ -191,7 +191,7 @@ func ValidateGomegaValue(res ResourceRead, property string, expectedValue, actua
 		}
 		gomegaMatcher = matchers.HavePatterns(expectedValue)
 	default:
-		err = fmt.Errorf("Unknown method signature: %t", f)
+		err = fmt.Errorf("unknown method signature: %t", f)
 	}
 
 	var success bool

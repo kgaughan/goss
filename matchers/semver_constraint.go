@@ -25,12 +25,12 @@ func BeSemverConstraint(constraint any) GossMatcher {
 func (m *BeSemverConstraintMatcher) Match(actual any) (bool, error) {
 	constraint, ok := toConstraint(m.Constraint)
 	if !ok {
-		return false, fmt.Errorf("Expected a valid semver constraint.  Got:\n%s", format.Object(m.Constraint, 1))
+		return false, fmt.Errorf("expected a valid semver constraint.  Got:\n%s", format.Object(m.Constraint, 1))
 	}
 
 	actualSlice, ok := toVersions(actual)
 	if !ok {
-		return false, fmt.Errorf("Expected a single or list of semver valid version(s).  Got:\n%s", format.Object(actual, 1))
+		return false, fmt.Errorf("expected a single or list of semver valid version(s).  Got:\n%s", format.Object(actual, 1))
 	}
 
 	for _, v := range actualSlice {

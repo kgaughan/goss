@@ -34,7 +34,8 @@ func (t ToNumeric) Transform(e any) (any, error) {
 		s := i.(string)
 		return strconv.ParseFloat(strings.TrimSpace(s), 64)
 	default:
-		return 0, fmt.Errorf("Expected numeric, Got:%s", format.Object(e, 1))
+		return 0, fmt.Errorf("expected numeric, got:%s", format.Object(e, 1))
+
 	}
 }
 
@@ -92,7 +93,7 @@ type ReaderToString struct{}
 func (t ReaderToString) Transform(i any) (any, error) {
 	r, ok := i.(io.Reader)
 	if !ok {
-		return nil, fmt.Errorf("Expected io.reader, Got:%s", format.Object(i, 1))
+		return nil, fmt.Errorf("expected io.Reader, got:%s", format.Object(i, 1))
 	}
 
 	b, err := io.ReadAll(r)
@@ -109,14 +110,14 @@ type Gjson struct {
 func (g Gjson) Transform(i any) (any, error) {
 	s, ok := i.(string)
 	if !ok {
-		return nil, fmt.Errorf("Expected string, Got:%s", format.Object(i, 1))
+		return nil, fmt.Errorf("expected string, got:%s", format.Object(i, 1))
 	}
 	if !gjson.Valid(s) {
 		return nil, errInvalidJSON
 	}
 	r := gjson.Get(s, g.Path)
 	if !r.Exists() {
-		return nil, fmt.Errorf("Path not found: %s", g.Path)
+		return nil, fmt.Errorf("path not found: %s", g.Path)
 	}
 
 	return r.Value(), nil

@@ -201,7 +201,7 @@ func (f *DefFile) hash(hashFunc hashFuncType) (string, error) {
 	case sha512Hash:
 		hash = sha512.New()
 	default:
-		return "", fmt.Errorf("Unsupported hash function %s", hashFunc)
+		return "", fmt.Errorf("unsupported hash function %s", hashFunc)
 	}
 
 	if _, err := io.Copy(hash, fh); err != nil {

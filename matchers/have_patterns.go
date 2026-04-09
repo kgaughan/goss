@@ -61,7 +61,8 @@ func (m *HavePatternsMatcher) Match(actual any) (bool, error) {
 	case []string:
 		fh = strings.NewReader(strings.Join(av, "\n"))
 	default:
-		err = fmt.Errorf("Incorrect type %T", actual)
+		err = fmt.Errorf("incorrect type %T", actual)
+
 	}
 	if err != nil {
 		return false, err

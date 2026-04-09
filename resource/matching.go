@@ -88,7 +88,7 @@ func (ret *MatchingMap) UnmarshalJSON(data []byte) error {
 	typs := strings.Split(typ.String(), ".")[1]
 	for id, res := range tmp {
 		if res == nil {
-			return fmt.Errorf("Could not parse resource %s:%s", typs, id)
+			return fmt.Errorf("could not parse resource %s:%s", typs, id)
 		}
 		res.SetID(id)
 	}
@@ -117,7 +117,7 @@ func (ret *MatchingMap) UnmarshalYAML(unmarshal func(v any) error) error {
 	typs := strings.Split(typ.String(), ".")[1]
 	for id, res := range tmp {
 		if res == nil {
-			return fmt.Errorf("Could not parse resource %s:%s", typs, id)
+			return fmt.Errorf("could not parse resource %s:%s", typs, id)
 		}
 		res.SetID(id)
 	}

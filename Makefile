@@ -73,8 +73,11 @@ gen:
 	$(info INFO: Starting build $@)
 	go generate -tags genny $(pkgs)
 
+.PHONY: clean
 clean:
 	$(info INFO: Starting build $@)
+	rm -rf c.out
+	rm -rf ./dist
 	rm -rf ./release
 	rm -rf ./site
 	rm -rf ${VENV}
@@ -159,8 +162,10 @@ $(DOCS_DEPS): $(PYTHON) docs/requirements.txt
 	@$(VENV)/bin/pip install --requirement docs/requirements.txt
 	@touch $(DOCS_DEPS)
 
+.PHONY: docs/setup
 docs/setup: $(DOCS_DEPS)
 
+.PHONY: docs/serve
 docs/serve: docs/setup
 	$(info Running documentation live development server)
 	@$(VENV)/bin/zensical serve --strict

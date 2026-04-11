@@ -267,7 +267,7 @@ func failedOrSkippedSummary(failedOrSkipped [][]resource.TestResult, includeRaw 
 			first := failedGroup[0]
 			header := header(first)
 			if header != "" {
-				fmt.Fprint(&s, header)
+				s.WriteString(header)
 			}
 			for _, testResult := range failedGroup {
 				fmt.Fprintln(&s, humanizeResult(testResult, false, includeRaw))

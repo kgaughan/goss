@@ -33,6 +33,17 @@ jobs:
           check-latest: true
           cache: true
 
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v5.0.0
+        with:
+          daemon-config: |
+            {
+              "debug": true,
+              "features": {
+                "containerd-snapshotter": true
+              }
+            }
+
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:

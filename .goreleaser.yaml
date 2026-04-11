@@ -86,7 +86,7 @@ dockers_v2:
     sbom: false
     # For multi-platform builds, I hope...
     flags:
-      - "--driver=docker-container"
+      - "--builder=container"
     images:
       - "ghcr.io/goss-org/goss"
     tags:

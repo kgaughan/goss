@@ -84,6 +84,9 @@ dockers_v2:
     disable: "{{ .IsSnapshot }}"
     # Doesn't seem to work in Github Actions for some reason
     sbom: false
+    # For multi-platform builds, I hope...
+    flags:
+      - "--driver=docker-container"
     images:
       - "ghcr.io/goss-org/goss"
     tags:

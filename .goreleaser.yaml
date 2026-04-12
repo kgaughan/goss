@@ -81,7 +81,7 @@ dockers_v2:
     platforms:
       - linux/amd64
       - linux/arm64
-    disable: "{{ .IsSnapshot }}"
+    disable: true # "{{ .IsSnapshot }}"
     images:
       - "ghcr.io/goss-org/goss"
     tags:

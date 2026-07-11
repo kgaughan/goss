@@ -76,10 +76,12 @@ var gomegaTests = []struct {
 	},
 	{
 		in: `{"contain-element": "foo"}`,
-		want: matchers.WithSafeTransform(matchers.ToArray{},
+		want: matchers.WithSafeTransform(
+			matchers.ToArray{},
 			matchers.ContainElement(
-				matchers.WithSafeTransform(matchers.ToString{},
-					matchers.Equal("foo")))),
+				matchers.WithSafeTransform(matchers.ToString{}, matchers.Equal("foo")),
+			),
+		),
 	},
 	{
 		in:   `{"have-len": 3}`,
@@ -99,43 +101,39 @@ var gomegaTests = []struct {
 	{
 		in: `{"and": ["foo", "foo"]}`,
 		want: matchers.And(
-			matchers.WithSafeTransform(matchers.ToString{},
-				matchers.Equal("foo")),
-			matchers.WithSafeTransform(matchers.ToString{},
-				matchers.Equal("foo")),
+			matchers.WithSafeTransform(matchers.ToString{}, matchers.Equal("foo")),
+			matchers.WithSafeTransform(matchers.ToString{}, matchers.Equal("foo")),
 		),
 		useNegateTester: true,
 	},
 	{
 		in: `{"and": [{"have-prefix": "foo"}, "foo"]}`,
 		want: matchers.And(
-			matchers.WithSafeTransform(matchers.ToString{},
-				matchers.HavePrefix("foo")),
-			matchers.WithSafeTransform(matchers.ToString{},
-				matchers.Equal("foo")),
+			matchers.WithSafeTransform(matchers.ToString{}, matchers.HavePrefix("foo")),
+			matchers.WithSafeTransform(matchers.ToString{}, matchers.Equal("foo")),
 		),
 		useNegateTester: true,
 	},
 	{
 		in: `{"not": {"have-prefix": "foo"}}`,
 		want: matchers.Not(
-			matchers.WithSafeTransform(matchers.ToString{},
-				matchers.HavePrefix("foo"))),
+			matchers.WithSafeTransform(matchers.ToString{}, matchers.HavePrefix("foo")),
+		),
 	},
 	{
 		in: `{"or": ["foo", "foo"]}`,
 		want: matchers.Or(
-			matchers.WithSafeTransform(matchers.ToString{},
-				matchers.Equal("foo")),
-			matchers.WithSafeTransform(matchers.ToString{},
-				matchers.Equal("foo"))),
+			matchers.WithSafeTransform(matchers.ToString{}, matchers.Equal("foo")),
+			matchers.WithSafeTransform(matchers.ToString{}, matchers.Equal("foo")),
+		),
 	},
 	{
 		in: `{"not": {"and": [{"have-prefix": "foo"}]}}`,
 		want: matchers.Not(
 			matchers.And(
-				matchers.WithSafeTransform(matchers.ToString{},
-					matchers.HavePrefix("foo")))),
+				matchers.WithSafeTransform(matchers.ToString{}, matchers.HavePrefix("foo")),
+			),
+		),
 	},
 
 	// Semver Constraint
